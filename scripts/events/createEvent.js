@@ -1,31 +1,63 @@
-// import { getItem, setItem } from '../common/storage.js';
+import { getItem, setItem } from '../common/storage.js';
 // import { renderEvents } from './events.js';
-// import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
+import { getDateTime } from '../common/time.utils.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 
 function clearEventForm() {
-  // ф-ция должна очистить поля формы от значений
+  eventFormElem.reset();
 }
 
 function onCloseEventForm() {
   closeModal();
+  clearEventForm();
 }
 
 function onCreateEvent(event) {
-  // задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
-  // создавать или менять DOM элементы здесь не нужно. Этим займутся другие ф-ции
-  // при подтверждении формы нужно считать данные с формы
-  // с формы вы получите поля date, startTime, endTime, title, description
-  // на основе полей date, startTime, endTime нужно посчитать дату начала и окончания события
-  // date, startTime, endTime - строки. Вам нужно с помощью getDateTime из утилит посчитать start и end объекта события
-  // полученное событие добавляем в массив событий, что хранится в storage
-  // закрываем форму
-  // и запускаем перерисовку событий с помощью renderEvents
-}
+  event.preventDefault();
+
+  const formData = new FormData(eventFormElem);
+
+  const title = formData.get('title'); 
+  const description = formData.get('description');
+  const date = formData.get('date');
+  const startTime = formData.get('startTime');
+  const endTime = formData.get('endTime');
+
+  if (!date || !startTime || !endTime) {
+    alert('Please fill in the date and time of the event!');
+    return;
+  }
+
+  const startDateTime = getDateTime(date, startTime);
+  const endDateTime = getDateTime(date, endTime);
+
+  if (startDateTime.getTime() >= endDateTime.getTime()) {
+    alert('The end time must be later than the start time!');
+    return;
+  }
+
+  const newEvent = {
+    id: Math.random().toString(), 
+    title,
+    description,
+    start: startDateTime,
+    end: endDateTime,
+  };
+
+  const currentEvents = getItem('events') || [];
+  
+  const updatedEvents = [...currentEvents, newEvent];
+
+  setItem('events', updatedEvents);
+
+  onCloseEventForm();
+};
 
 export function initEventForm() {
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
-}
+  
+  eventFormElem.addEventListener('submit', onCreateEvent);
+};
