@@ -1,9 +1,8 @@
-import { getItem } from '../common/storage.js';
-// import { getItem, setItem } from '../common/storage.js';
-// import { renderWeek } from '../calendar/calendar.js';
-// import { renderHeader } from '../calendar/header.js';
-// import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
-import { getDisplayedMonth } from '../common/time.utils.js';
+import { renderWeek } from '../calendar/calendar.js';
+import { renderHeader } from '../calendar/header.js';
+import shmoment from '../common/shmoment.js';
+import { getItem, setItem } from '../common/storage.js';
+import { getDisplayedMonth, getStartOfWeek } from '../common/time.utils.js';
 
 
 const navElem = document.querySelector('.navigation');
@@ -20,8 +19,28 @@ function renderCurrentMonth() {
 }
 
 const onChangeWeek = (event) => {
-  // при переключении недели обновите displayedWeekStart в storage
-  // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
+  const button = event.target.closest('button');
+
+  if (!button) return;
+
+  const direction = button.dataset.direction;
+
+  const displayedWeekStart = getItem('displayedWeekStart');
+  let newStartDate;
+
+  if (direction === 'next') {
+    newStartDate = shmoment(displayedWeekStart).add('days', 7).result();
+  } else if (direction === 'prev') {
+    newStartDate = shmoment(displayedWeekStart).subtract('days', 7).result();
+  } else if (direction === 'today') {
+    newStartDate = getStartOfWeek(new Date());
+  }
+
+  setItem('displayedWeekStart', newStartDate);
+
+  renderHeader();
+  renderWeek();
+  renderCurrentMonth();
 };
 
 export const initNavigation = () => {
