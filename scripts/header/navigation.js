@@ -1,7 +1,10 @@
-import { getItem, setItem } from '../common/storage.js';
-import { renderWeek } from '../calendar/calendar.js';
-import { renderHeader } from '../calendar/header.js';
-import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
+import { getItem } from '../common/storage.js';
+// import { getItem, setItem } from '../common/storage.js';
+// import { renderWeek } from '../calendar/calendar.js';
+// import { renderHeader } from '../calendar/header.js';
+// import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
+import { getDisplayedMonth } from '../common/time.utils.js';
+
 
 const navElem = document.querySelector('.navigation');
 const displayedMonthElem = document.querySelector(
@@ -9,8 +12,11 @@ const displayedMonthElem = document.querySelector(
 );
 
 function renderCurrentMonth() {
-  // отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
-  // вставить в .navigation__displayed-month
+  const displayedWeekStart = getItem('displayedWeekStart');
+
+  const currentMonthText = getDisplayedMonth(displayedWeekStart);
+
+  displayedMonthElem.textContent = currentMonthText;
 }
 
 const onChangeWeek = (event) => {

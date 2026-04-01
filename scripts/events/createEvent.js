@@ -1,6 +1,6 @@
-import { getItem, setItem } from '../common/storage.js';
-import { renderEvents } from './events.js';
-import { getDateTime } from '../common/time.utils.js';
+// import { getItem, setItem } from '../common/storage.js';
+// import { renderEvents } from './events.js';
+// import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
 
 const eventFormElem = document.querySelector('.event-form');
@@ -11,7 +11,7 @@ function clearEventForm() {
 }
 
 function onCloseEventForm() {
-  // здесь нужно закрыть модальное окно и очистить форму
+  closeModal();
 }
 
 function onCreateEvent(event) {
@@ -27,5 +27,5 @@ function onCreateEvent(event) {
 }
 
 export function initEventForm() {
-  // подпишитесь на сабмит формы и на закрытие формы
+  closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
