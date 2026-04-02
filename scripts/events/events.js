@@ -1,6 +1,6 @@
 import { closePopup, openPopup } from '../common/popup.js';
+import shmoment from '../common/shmoment.js';
 import { getItem, setItem } from '../common/storage.js';
-// import shmoment from '../common/shmoment.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -18,7 +18,8 @@ function handleEventClick(event) {
 }
 
 function removeEventsFromCalendar() {
-  // ф-ция для удаления всех событий с календаря
+  const existingEvents = document.querySelectorAll('.event');
+  existingEvents.forEach(elem => elem.remove());
 }
 
 const createEventElement = (event) => {
@@ -49,8 +50,7 @@ const createEventElement = (event) => {
 };
 
 export const renderEvents = () => {
-  const existingEvents = document.querySelectorAll('.event');
-  existingEvents.forEach(elem => elem.remove());
+  removeEventsFromCalendar();
 
   const events = getItem('events') || [];
 
@@ -73,12 +73,18 @@ function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
   const events = getItem('events') || [];
 
-  const eventToDelete = events.find(e => e.id === eventId);
-  const now = new Date();
+  const eventToDelete = events.find(event => event.id === eventId);
+  
+  if (!eventToDelete) {
+    closePopup();
+    return;
+  }
+  
+  const currentDate = new Date();
   const eventStart = new Date(eventToDelete.start);
-  const diffInMinutes = (eventStart - now) / (1000 * 60);
+  const deleteLimit = shmoment(eventStart).subtract('minutes', 15).result();
 
-  if (diffInMinutes < 15 && diffInMinutes > 0) {
+  if (currentDate > deleteLimit && currentDate < eventStart) {
     alert('You cannot delete an event less than 15 minutes before it starts!');
     return;
   }
