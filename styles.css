@@ -167,6 +167,26 @@
   border-bottom: 1px solid #eee;
 }
 
+.current-time-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ea4335;
+  z-index: 10;
+  pointer-events: none;
+}
+.current-time-line::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  background-color: #ea4335;
+  border-radius: 50%;
+}
+
 .calendar__time-scale {
   width: 60px;
   flex-shrink: 0;

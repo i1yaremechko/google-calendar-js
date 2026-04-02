@@ -20,7 +20,7 @@ function onCreateEvent(event) {
 
   const formData = new FormData(eventFormElem);
 
-  const title = formData.get('title'); 
+  const title = formData.get('title') || 'No Title'; 
   const description = formData.get('description');
   const date = formData.get('date');
   const startTime = formData.get('startTime');
@@ -33,9 +33,39 @@ function onCreateEvent(event) {
 
   const startDateTime = getDateTime(date, startTime);
   const endDateTime = getDateTime(date, endTime);
+  const durationInMinutes = (endDateTime - startDateTime) / (1000 * 60);
 
-  if (startDateTime.getTime() >= endDateTime.getTime()) {
+  if (durationInMinutes <= 0) {
     alert('The end time must be later than the start time!');
+    return;
+  }
+
+  if (startDateTime.getMinutes() % 15 !== 0 || endDateTime.getMinutes() % 15 !== 0) {
+    alert('Start and end times should be a short 15 minutes!');
+    return;
+  }
+
+  if (durationInMinutes > 360) {
+    alert('The event cannot be longer than 6 hours!');
+    return;
+  }
+
+  if (startDateTime.toDateString() !== endDateTime.toDateString()) {
+    alert('The event must start and end within the same day!');
+    return;
+  }
+
+  const currentEvents = getItem('events') || [];
+
+  const isOverlapping = currentEvents.some(existingEvent => {
+    const existingStart = new Date(existingEvent.start);
+    const existingEnd = new Date(existingEvent.end);
+    
+    return startDateTime < existingEnd && endDateTime > existingStart;
+  });
+
+  if (isOverlapping) {
+    alert('Another event is already planned for this time!');
     return;
   }
 
@@ -47,12 +77,10 @@ function onCreateEvent(event) {
     end: endDateTime,
   };
 
-  const currentEvents = getItem('events') || [];
   const updatedEvents = [...currentEvents, newEvent];
 
   setItem('events', updatedEvents);
   onCloseEventForm();
-
   renderEvents();
 };
 

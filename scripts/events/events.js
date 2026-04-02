@@ -73,6 +73,16 @@ function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
   const events = getItem('events') || [];
 
+  const eventToDelete = events.find(e => e.id === eventId);
+  const now = new Date();
+  const eventStart = new Date(eventToDelete.start);
+  const diffInMinutes = (eventStart - now) / (1000 * 60);
+
+  if (diffInMinutes < 15 && diffInMinutes > 0) {
+    alert('You cannot delete an event less than 15 minutes before it starts!');
+    return;
+  }
+
   const updateEvents = events.filter(event => event.id !== eventId);
 
   setItem('events', updateEvents);
