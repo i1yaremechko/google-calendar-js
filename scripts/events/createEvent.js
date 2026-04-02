@@ -1,7 +1,7 @@
-import { getItem, setItem } from '../common/storage.js';
-// import { renderEvents } from './events.js';
 import { closeModal } from '../common/modal.js';
+import { getItem, setItem } from '../common/storage.js';
 import { getDateTime } from '../common/time.utils.js';
+import { renderEvents } from './events.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
@@ -48,16 +48,15 @@ function onCreateEvent(event) {
   };
 
   const currentEvents = getItem('events') || [];
-  
   const updatedEvents = [...currentEvents, newEvent];
 
   setItem('events', updatedEvents);
-
   onCloseEventForm();
+
+  renderEvents();
 };
 
 export function initEventForm() {
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
-  
   eventFormElem.addEventListener('submit', onCreateEvent);
 };

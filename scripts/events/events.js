@@ -1,6 +1,7 @@
-import { getItem, setItem } from '../common/storage.js';
-import shmoment from '../common/shmoment.js';
-import { openPopup, closePopup } from '../common/popup.js';
+import { getItem } from '../common/storage.js';
+// import { getItem, setItem } from '../common/storage.js';
+// import shmoment from '../common/shmoment.js';
+// import { openPopup, closePopup } from '../common/popup.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -15,20 +16,52 @@ function removeEventsFromCalendar() {
 }
 
 const createEventElement = (event) => {
-  // ф-ция создает DOM элемент события
-  // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
-  // нужно добавить id события в дата атрибут
-  // здесь для создания DOM элемента события используйте document.createElement
+  const start = new Date(event.start);
+  const end = new Date(event.end);
+
+  const eventElem = document.createElement('div');
+  eventElem.classList.add('event');
+
+  eventElem.dataset.eventId = event.id;
+
+  const durationInMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
+  eventElem.style.height = `${durationInMinutes}px`;
+
+  eventElem.style.top = `${start.getHours() * 60 + start.getMinutes()}px`;
+
+  const startHours = start.getHours().toString().padStart(2, '0');
+  const starMinutes = start.getMinutes().toString().padStart(2, '0');
+  const endHours = end.getHours().toString().padStart(2, '0');
+  const endMinutes = end.getMinutes().toString().padStart(2, '0');
+
+  eventElem.innerHTML = `
+    <div class="event__title">${event.title}</div>
+    <div class="event__time">${startHours}:${starMinutes} - ${endHours}:${endMinutes}</div>
+    <div class="event__description">${event.description || ''}</div>
+  `;
+
+  return eventElem;
 };
 
 export const renderEvents = () => {
-  // достаем из storage все события и дату понедельника отображаемой недели
-  // фильтруем события, оставляем только те, что входят в текущую неделю
-  // создаем для них DOM элементы с помощью createEventElement
-  // для каждого события находим на странице временную ячейку (.calendar__time-slot)
-  // и вставляем туда событие
-  // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
-  // не забудьте удалить с календаря старые события перед добавлением новых
+  const existingEvents = document.querySelectorAll('.event');
+  existingEvents.forEach(elem => elem.remove());
+
+  const events = getItem('events') || [];
+
+  events.forEach(event => {
+    const start = new Date(event.start);
+    const eventDay = start.getDate();
+    const eventHour = start.getHours();
+
+    const slotSelector = `.calendar__day[data-day="${eventDay}"] .calendar__time-slot[data-time="${eventHour}"]`;
+    const timeSlotElem = document.querySelector(slotSelector);
+
+    if (timeSlotElem) {
+      const eventElement = createEventElement(event);
+      timeSlotElem.append(eventElement);
+    }
+  });
 };
 
 function onDeleteEvent() {
@@ -39,5 +72,4 @@ function onDeleteEvent() {
 }
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
-
 weekElem.addEventListener('click', handleEventClick);
