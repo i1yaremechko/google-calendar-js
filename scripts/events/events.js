@@ -1,14 +1,20 @@
-import { getItem } from '../common/storage.js';
-// import { getItem, setItem } from '../common/storage.js';
+import { closePopup, openPopup } from '../common/popup.js';
+import { getItem, setItem } from '../common/storage.js';
 // import shmoment from '../common/shmoment.js';
-// import { openPopup, closePopup } from '../common/popup.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleEventClick(event) {
-  // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
-  // установите eventIdToDelete с id события в storage
+  const eventElem = event.target.closest('.event');
+  if (!eventElem) return;
+
+  event.stopPropagation();
+
+  const eventId = eventElem.dataset.eventId;
+  setItem('selectedEventId', eventId);
+
+  openPopup(event.clientX, event.clientY);
 }
 
 function removeEventsFromCalendar() {
@@ -21,7 +27,6 @@ const createEventElement = (event) => {
 
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
-
   eventElem.dataset.eventId = event.id;
 
   const durationInMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
@@ -65,10 +70,14 @@ export const renderEvents = () => {
 };
 
 function onDeleteEvent() {
-  // достаем из storage массив событий и eventIdToDelete
-  // удаляем из массива нужное событие и записываем в storage новый массив
-  // закрыть попап
-  // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
+  const eventId = getItem('selectedEventId');
+  const events = getItem('events') || [];
+
+  const updateEvents = events.filter(event => event.id !== eventId);
+
+  setItem('events', updateEvents);
+  closePopup();
+  renderEvents();
 }
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
