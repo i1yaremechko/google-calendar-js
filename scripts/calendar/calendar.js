@@ -52,7 +52,7 @@ setInterval(renderCurrentTimeLine, 60000);
 
 export const initCalendarSync = () => {
   window.addEventListener('storage', (event) => {
-    if (event.key === 'calendar_events') {
+    if (event.key === 'calendar_events' || event.key === 'calendar_settings') {
       renderEvents(); 
     }
   });

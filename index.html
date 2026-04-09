@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -39,6 +39,14 @@
           <i class="fas fa-chevron-right"></i>
         </button>
         <span class="navigation__displayed-month">Jun - Jul 2019</span>
+      </div>
+      <button class="button settings-btn">Settings</button>
+      <div class="settings-modal hidden overlay">
+        <div class="modal__content">
+          <h3>Event Color</h3>
+          <input type="color" id="colorPicker" value="#2196f3" />
+          <button class="button close-settings-btn">Save & Close</button>
+        </div>
       </div>
     </header>
     <section class="calendar">

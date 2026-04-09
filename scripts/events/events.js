@@ -40,6 +40,9 @@ const createEventElement = (event) => {
   const endHours = end.getHours().toString().padStart(2, '0');
   const endMinutes = end.getMinutes().toString().padStart(2, '0');
 
+  const eventColor = getItem('eventColor');
+  eventElem.style.backgroundColor = eventColor;
+
   eventElem.innerHTML = `
     <div class="event__title">${event.title}</div>
     <div class="event__time">${startHours}:${starMinutes} - ${endHours}:${endMinutes}</div>

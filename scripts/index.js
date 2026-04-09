@@ -5,6 +5,7 @@ import { setItem } from './common/storage.js';
 import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
 import { initNavigation } from './header/navigation.js';
+import { initSettings } from './settings/settings.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderTimescale();
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initEventForm();
   initCalendarSync();
+  initSettings();
 });
