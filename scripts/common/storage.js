@@ -1,22 +1,27 @@
+const storageKey = 'calendar_events';
+
 let storage = {
   eventIdToDelete: null,
   displayedWeekStart: null,
-  events: [],
 };
 
 export const setItem = (key, value) => {
-  storage[key] = value;
+  if (key === 'events') {
+    localStorage.setItem(storageKey, JSON.stringify(value));
+  } else {
+    storage[key] = value;
+  }
 };
 
 export const getItem = (key) => {
+  if (key === 'events') {
+    return JSON.parse(localStorage.getItem(storageKey)) || [];
+  }
   return storage[key];
 };
 
-//example
-const eventExample = {
-  id: 0.7520027086457333,
-  title: 'Title',
-  description: 'Some description',
-  start: new Date('2020-03-17T01:10:00.000Z'),
-  end: new Date('2020-03-17T04:30:00.000Z'),
-};
+window.addEventListener('storage', (event) => {
+  if (event.key === storageKey) {
+    window.dispatchEvent(new CustomEvent('eventsUpdated'));
+  }
+});

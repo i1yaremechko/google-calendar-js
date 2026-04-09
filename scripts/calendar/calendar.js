@@ -49,3 +49,11 @@ export const renderWeek = () => {
 };
 
 setInterval(renderCurrentTimeLine, 60000);
+
+export const initCalendarSync = () => {
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'calendar_events') {
+      renderEvents(); 
+    }
+  });
+};
