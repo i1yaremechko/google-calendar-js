@@ -1,10 +1,10 @@
 import { getItem, setItem } from '../common/storage.js';
-import { renderEvents } from '../events/events.js';
 
 const settingsBtn = document.querySelector('.settings-btn');
 const settingsModal = document.querySelector('.settings-modal');
 const colorPicker = document.querySelector('#colorPicker');
 const closeSettingsBtn = document.querySelector('.close-settings-btn');
+const eventFormColorPicker = document.querySelector('.event-form input[name="color"]');
 
 export const initSettings = () => {
   settingsBtn.addEventListener('click', () => {
@@ -15,7 +15,10 @@ export const initSettings = () => {
   colorPicker.addEventListener('input', (event) => {
     const newColor = event.target.value;
     setItem('eventColor', newColor);
-    renderEvents();
+    
+    if (eventFormColorPicker) {
+      eventFormColorPicker.value = newColor;
+    }
   });
 
   closeSettingsBtn.addEventListener('click', () => {

@@ -17,7 +17,6 @@ function onCloseEventForm() {
 
 function onCreateEvent(event) {
   event.preventDefault();
-
   const formData = new FormData(eventFormElem);
 
   const title = formData.get('title') || 'No Title'; 
@@ -25,6 +24,7 @@ function onCreateEvent(event) {
   const date = formData.get('date');
   const startTime = formData.get('startTime');
   const endTime = formData.get('endTime');
+  const selectedColor = formData.get('color');
 
   if (!date || !startTime || !endTime) {
     alert('Please fill in the date and time of the event!');
@@ -56,11 +56,9 @@ function onCreateEvent(event) {
   }
 
   const currentEvents = getItem('events') || [];
-
   const isOverlapping = currentEvents.some(existingEvent => {
     const existingStart = new Date(existingEvent.start);
     const existingEnd = new Date(existingEvent.end);
-    
     return startDateTime < existingEnd && endDateTime > existingStart;
   });
 
@@ -75,6 +73,7 @@ function onCreateEvent(event) {
     description,
     start: startDateTime,
     end: endDateTime,
+    color: selectedColor,
   };
 
   const updatedEvents = [...currentEvents, newEvent];

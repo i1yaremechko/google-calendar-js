@@ -4,15 +4,21 @@ import { getItem, setItem } from '../common/storage.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
+const colorPickerInPopup = document.querySelector('.change-event-color-picker');
 
 function handleEventClick(event) {
   const eventElem = event.target.closest('.event');
   if (!eventElem) return;
 
   event.stopPropagation();
-
   const eventId = eventElem.dataset.eventId;
   setItem('selectedEventId', eventId);
+
+  const events = getItem('events') || [];
+  const currentEvent = events.find(e => e.id === eventId);
+  if (currentEvent) {
+    colorPickerInPopup.value = currentEvent.color || '#71a1e0';
+  }
 
   openPopup(event.clientX, event.clientY);
 }
@@ -29,19 +35,16 @@ const createEventElement = (event) => {
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
   eventElem.dataset.eventId = event.id;
+  eventElem.style.backgroundColor = event.color || '#71a1e0';
 
   const durationInMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
   eventElem.style.height = `${durationInMinutes}px`;
-
   eventElem.style.top = `${start.getHours() * 60 + start.getMinutes()}px`;
 
   const startHours = start.getHours().toString().padStart(2, '0');
   const starMinutes = start.getMinutes().toString().padStart(2, '0');
   const endHours = end.getHours().toString().padStart(2, '0');
   const endMinutes = end.getMinutes().toString().padStart(2, '0');
-
-  const eventColor = getItem('eventColor');
-  eventElem.style.backgroundColor = eventColor;
 
   eventElem.innerHTML = `
     <div class="event__title">${event.title}</div>
@@ -54,7 +57,6 @@ const createEventElement = (event) => {
 
 export const renderEvents = () => {
   removeEventsFromCalendar();
-
   const events = getItem('events') || [];
 
   events.forEach(event => {
@@ -72,10 +74,25 @@ export const renderEvents = () => {
   });
 };
 
+function onChangeEventColor(event) {
+  const eventId = getItem('selectedEventId');
+  const events = getItem('events') || [];
+  const newColor = event.target.value;
+
+  const updatedEvents = events.map((e) => {
+    if (e.id === eventId) {
+      return { ...e, color: newColor };
+    }
+    return e;
+  });
+
+  setItem('events', updatedEvents);
+  renderEvents();
+}
+
 function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
   const events = getItem('events') || [];
-
   const eventToDelete = events.find(event => event.id === eventId);
   
   if (!eventToDelete) {
@@ -99,5 +116,8 @@ function onDeleteEvent() {
   renderEvents();
 }
 
+if (colorPickerInPopup) {
+  colorPickerInPopup.addEventListener('input', onChangeEventColor);
+}
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 weekElem.addEventListener('click', handleEventClick);

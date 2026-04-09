@@ -40,14 +40,6 @@
         </button>
         <span class="navigation__displayed-month">Jun - Jul 2019</span>
       </div>
-      <button class="button settings-btn">Settings</button>
-      <div class="settings-modal hidden overlay">
-        <div class="modal__content">
-          <h3>Event Color</h3>
-          <input type="color" id="colorPicker" value="#2196f3" />
-          <button class="button close-settings-btn">Save & Close</button>
-        </div>
-      </div>
     </header>
     <section class="calendar">
       <header class="calendar__header"></header>
@@ -75,6 +67,17 @@
               <span>-</span>
               <input type="time" name="endTime" class="event-form__field" />
             </div>
+            <div class="event-form__field">
+              <label style="font-size: 14px; color: #70757a;"
+                >Event color</label
+              >
+              <input
+                type="color"
+                name="color"
+                value="#71a1e0"
+                style="display: block; width: 50px; cursor: pointer;"
+              />
+            </div>
             <textarea
               name="description"
               placeholder="Description"
@@ -88,6 +91,10 @@
     <div class="popup hidden overlay">
       <div class="popup__overlay"></div>
       <div class="popup__content">
+        <div class="popup__color-picker">
+          <label class="popup__color-label">Change color:</label>
+          <input type="color" class="change-event-color-picker" />
+        </div>
         <button class="delete-event-btn">Delete</button>
       </div>
     </div>
