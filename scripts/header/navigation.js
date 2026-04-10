@@ -1,30 +1,30 @@
-import { renderWeek } from '../calendar/calendar.js';
-import { renderHeader } from '../calendar/header.js';
+import { renderCalendar } from '../calendar/calendar.js';
+import { openModal } from '../common/modal.js';
 import shmoment from '../common/shmoment.js';
 import { getItem, setItem } from '../common/storage.js';
 import { getDisplayedMonth, getStartOfWeek } from '../common/time.utils.js';
 
-
 const navElem = document.querySelector('.navigation');
-const displayedMonthElem = document.querySelector(
-  '.navigation__displayed-month'
-);
+const displayedMonthElem = document.querySelector('.navigation__displayed-month');
+const createBtn = document.querySelector('.create-event-btn');
 
-function renderCurrentMonth() {
+/**
+ * Оновлює текст із назвою місяця в хедері
+ */
+export function renderCurrentMonth() {
   const displayedWeekStart = getItem('displayedWeekStart');
-
   const currentMonthText = getDisplayedMonth(displayedWeekStart);
-
   displayedMonthElem.textContent = currentMonthText;
 }
 
+/**
+ * Обробник кліків по кнопках навігації (Prev, Next, Today)
+ */
 const onChangeWeek = (event) => {
   const button = event.target.closest('button');
-
   if (!button) return;
 
   const direction = button.dataset.direction;
-
   const displayedWeekStart = getItem('displayedWeekStart');
   let newStartDate;
 
@@ -37,13 +37,15 @@ const onChangeWeek = (event) => {
   }
 
   setItem('displayedWeekStart', newStartDate);
-
-  renderHeader();
-  renderWeek();
-  renderCurrentMonth();
+  renderCalendar();
 };
 
 export const initNavigation = () => {
   renderCurrentMonth();
+  
   navElem.addEventListener('click', onChangeWeek);
+  
+  if (createBtn) {
+    createBtn.addEventListener('click', openModal);
+  }
 };

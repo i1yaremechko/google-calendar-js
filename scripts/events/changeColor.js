@@ -1,5 +1,5 @@
 import { getItem, setItem } from '../common/storage.js';
-import { renderEvents } from './renderer.js';
+import { renderEvents } from './eventRenderer.js';
 
 export function onChangeEventColor(event) {
   const eventId = getItem('selectedEventId');

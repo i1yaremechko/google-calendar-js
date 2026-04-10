@@ -2,7 +2,7 @@ import { openPopup } from '../common/popup.js';
 import { getItem, setItem } from '../common/storage.js';
 import { onChangeEventColor } from './changeColor.js';
 import { onDeleteEvent } from './deleteEvent.js';
-import { renderEvents } from './renderer.js';
+import { renderEvents } from './eventRenderer.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');

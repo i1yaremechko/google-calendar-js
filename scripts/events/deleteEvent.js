@@ -1,7 +1,7 @@
 import { closePopup } from '../common/popup.js';
 import shmoment from '../common/shmoment.js';
 import { getItem, setItem } from '../common/storage.js';
-import { renderEvents } from './renderer.js';
+import { renderEvents } from './eventRenderer.js';
 
 export function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
