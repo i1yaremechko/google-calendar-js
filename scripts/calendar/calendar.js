@@ -1,7 +1,7 @@
 import { createNumbersArray } from '../common/createNumbersArray.js';
 import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
-import { renderEvents } from '../events/events.js';
+import { renderEvents } from '../events/renderer.js';
 
 
 const generateDay = () => {
@@ -18,12 +18,10 @@ export const renderCurrentTimeLine = () => {
 
   const currentDate = new Date();
   const currentDayElem = document.querySelector(`.calendar__day[data-day="${currentDate.getDate()}"]`);
-  
   if (!currentDayElem) return;
 
   const presentTime = document.createElement('div');
   presentTime.classList.add('current-time-line');
-
   const clockHeight = currentDate.getHours() * 60 + currentDate.getMinutes();
   presentTime.style.top = `${clockHeight}px`;
 

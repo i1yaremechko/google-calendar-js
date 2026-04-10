@@ -1,7 +1,7 @@
 import { closeModal } from '../common/modal.js';
 import { getItem, setItem } from '../common/storage.js';
 import { getDateTime } from '../common/time.utils.js';
-import { renderEvents } from './events.js';
+import { renderEvents } from './renderer.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');

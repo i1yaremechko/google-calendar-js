@@ -22,7 +22,7 @@ export const getItem = (key) => {
   }
   if (key === 'eventColor') {
     const settings = JSON.parse(localStorage.getItem(settingsKey));
-    return settings ? settings.eventColor : '#2196f3'; // Синій за замовчуванням
+    return settings ? settings.eventColor : '#2196f3';
   }
   return storage[key];
 };
