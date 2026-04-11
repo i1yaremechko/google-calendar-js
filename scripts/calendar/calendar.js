@@ -1,17 +1,14 @@
+import { renderEvents } from '../events/eventRenderer.js';
 import { renderCurrentMonth } from '../header/navigation.js';
 import { renderHeader } from './header.js';
 import { renderWeek } from './renderWeek.js';
 
-export const renderCalendar = () => {
+export const renderCalendar = async () => {
   renderHeader();
-  renderWeek();
+  await renderWeek();
   renderCurrentMonth();
 };
 
 export const initCalendarSync = () => {
-  window.addEventListener('storage', (event) => {
-    if (event.key === 'events') {
-      renderEvents(); 
-    }
-  });
+  setInterval(renderEvents, 10000);
 };

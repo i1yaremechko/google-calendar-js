@@ -2,7 +2,6 @@ import { createNumbersArray } from '../common/createNumbersArray.js';
 
 export const renderTimescale = () => {
   const timeScaleContainer = document.querySelector('.calendar__time-scale');
-
   const hours = createNumbersArray(0, 23);
 
   const timeScaleHTML = hours.map(hour => {

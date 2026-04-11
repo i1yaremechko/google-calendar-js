@@ -8,18 +8,12 @@ const navElem = document.querySelector('.navigation');
 const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 const createBtn = document.querySelector('.create-event-btn');
 
-/**
- * Оновлює текст із назвою місяця в хедері
- */
 export function renderCurrentMonth() {
   const displayedWeekStart = getItem('displayedWeekStart');
   const currentMonthText = getDisplayedMonth(displayedWeekStart);
   displayedMonthElem.textContent = currentMonthText;
 }
 
-/**
- * Обробник кліків по кнопках навігації (Prev, Next, Today)
- */
 const onChangeWeek = (event) => {
   const button = event.target.closest('button');
   if (!button) return;

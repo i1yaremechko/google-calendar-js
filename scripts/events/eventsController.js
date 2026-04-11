@@ -1,6 +1,6 @@
 import { openPopup } from '../common/popup.js';
 import { getItem, setItem } from '../common/storage.js';
-import { onChangeEventColor } from './changeColor.js';
+import { onChangeEventColor } from './changeEventColor.js';
 import { onDeleteEvent } from './deleteEvent.js';
 import { renderEvents } from './eventRenderer.js';
 
@@ -26,11 +26,15 @@ function handleEventClick(event) {
 }
 
 export function initEvents() {
+  const weekElem = document.querySelector('.calendar__week');
+  const deleteEventBtn = document.querySelector('.delete-event-btn');
+  const colorPickerInPopup = document.querySelector('.change-event-color-picker');
+
   weekElem.addEventListener('click', handleEventClick);
   deleteEventBtn.addEventListener('click', onDeleteEvent);
   
   if (colorPickerInPopup) {
-    colorPickerInPopup.addEventListener('input', onChangeEventColor);
+    colorPickerInPopup.addEventListener('change', onChangeEventColor);
   }
 
   renderEvents();

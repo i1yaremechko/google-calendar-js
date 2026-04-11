@@ -8,9 +8,12 @@ import { initEvents } from './events/eventsController.js';
 import { initNavigation } from './header/navigation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setItem('displayedWeekStart', getStartOfWeek(new Date()));
+  const startOfWeek = getStartOfWeek(new Date());
+  setItem('displayedWeekStart', startOfWeek);
+
   renderTimescale();
   renderCalendar();
+  
   initNavigation();
   initEvents();
   initEventForm();

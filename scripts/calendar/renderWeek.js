@@ -4,7 +4,7 @@ import { renderEvents } from '../events/eventRenderer.js';
 import { renderCurrentTimeLine } from './currentTimeLine.js';
 import { generateDayMarkup } from './day.js';
 
-export const renderWeek = () => {
+export const renderWeek = async () => {
   const weekContainer = document.querySelector('.calendar__week');
   const displayedWeekStart = getItem('displayedWeekStart');
   const weekDates = generateWeekRange(displayedWeekStart);
@@ -13,6 +13,6 @@ export const renderWeek = () => {
     .map(date => generateDayMarkup(date))
     .join('');
 
-  renderEvents();
+  await renderEvents();
   renderCurrentTimeLine();
 };

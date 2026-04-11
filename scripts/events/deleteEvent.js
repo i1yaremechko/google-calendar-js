@@ -1,30 +1,17 @@
 import { closePopup } from '../common/popup.js';
-import shmoment from '../common/shmoment.js';
-import { getItem, setItem } from '../common/storage.js';
+import { getItem } from '../common/storage.js';
+import { deleteEvent } from '../server/eventsGateway.js';
 import { renderEvents } from './eventRenderer.js';
 
-export function onDeleteEvent() {
+export async function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
-  const events = getItem('events') || [];
-  const eventToDelete = events.find(event => event.id === eventId);
-  
-  if (!eventToDelete) {
+  if (!eventId) return;
+
+  try {
+    await deleteEvent(eventId);
     closePopup();
-    return;
+    renderEvents();
+  } catch (err) {
+    alert('Internal Server Error');
   }
-  
-  const currentDate = new Date();
-  const eventStart = new Date(eventToDelete.start);
-  const deleteLimit = shmoment(eventStart).subtract('minutes', 15).result();
-
-  if (currentDate > deleteLimit && currentDate < eventStart) {
-    alert('You cannot delete an event less than 15 minutes before it starts!');
-    return;
-  }
-
-  const updateEvents = events.filter(event => event.id !== eventId);
-
-  setItem('events', updateEvents);
-  closePopup();
-  renderEvents();
 }
