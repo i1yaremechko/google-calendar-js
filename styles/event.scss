@@ -32,6 +32,14 @@
 }
 
 .popup {
+  &__content {
+    position: absolute;
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
   &__color-picker {
     padding: 8px 24px;
     display: flex;

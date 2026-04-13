@@ -148,7 +148,6 @@
 .calendar__week {
   display: flex;
   flex: 1;
-  margin-right: 5px;
 }
 .calendar__day {
   flex: 1;
@@ -276,6 +275,13 @@
   opacity: 0.9;
 }
 
+.popup__content {
+  position: absolute;
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 .popup__color-picker {
   padding: 8px 24px;
   display: flex;
