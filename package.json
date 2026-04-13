@@ -1,26 +1,34 @@
 {
-  "name": "gromcode-calendar-js",
+  "name": "google-calendar-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "A vanilla JavaScript clone of Google Calendar with SCSS",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "lint": "npm run lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "scss": "sass src/styles/main.scss dist/style.css --watch",
+    "start": "live-server"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrii142/gromcode-calendar-js.git"
+    "url": "git+https://github.com/i1yaremechko/google-calendar-js.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["calendar", "javascript", "scss", "vanilla-js"],
+  "author": "Ivan Yaremechko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andrii142/gromcode-calendar-js/issues"
+    "url": "https://github.com/i1yaremechko/google-calendar-js/issues"
   },
-  "homepage": "https://github.com/andrii142/gromcode-calendar-js#readme",
+  "homepage": "https://i1yaremechko.github.io/google-calendar-js/",
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-import": "^2.20.1"
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^2.0.2",
+    "sass": "^1.70.0",
+    "live-server": "^1.2.1"
   }
 }
