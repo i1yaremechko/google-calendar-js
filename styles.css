@@ -100,7 +100,7 @@
 .calendar__header {
   display: flex;
   margin-left: 60px;
-  margin-right: 20px;
+  margin-right: 22px;
   border-bottom: 1px solid #dadce0;
   background-color: #fff;
 }
@@ -148,6 +148,7 @@
 .calendar__week {
   display: flex;
   flex: 1;
+  margin-right: 5px;
 }
 .calendar__day {
   flex: 1;
