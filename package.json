@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "scss": "sass --watch styles/main.scss styles.css",
+    "scss": "sass --watch styles/index.scss styles.css",
     "start": "live-server"
   },
   "repository": {
