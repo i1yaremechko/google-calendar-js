@@ -1,17 +1,20 @@
 .calendar__time-scale {
   width: 60px;
   flex-shrink: 0;
+  border-right: 1px solid #dadce0;
+  box-sizing: border-box;
 }
 
 .time-slot {
   height: 60px;
   position: relative;
+  box-sizing: border-box;
 
   &__time {
     position: absolute;
-    top: -10px;
-    right: 10px;
-    font-size: 14px;
-    color: #777;
+    top: -8px;
+    right: 8px;
+    font-size: 11px;
+    color: #70757a;
   }
 }

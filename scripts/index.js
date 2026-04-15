@@ -1,4 +1,4 @@
-import { initCalendarSync, renderCalendar } from './calendar/calendar.js';
+import { renderCalendar } from './calendar/calendar.js';
 import { initCurrentTimeLine } from './calendar/currentTimeLine.js';
 import { renderTimescale } from './calendar/timescale.js';
 import { setItem } from './common/storage.js';
@@ -18,5 +18,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initEvents();
   initEventForm();
   initCurrentTimeLine();
-  initCalendarSync();
 });

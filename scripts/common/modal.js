@@ -1,5 +1,5 @@
 const modalElem = document.querySelector('.modal');
-const modalContentElem = document.querySelector('.modal__content');
+const closeBtnElem = document.querySelector('.create-event__close-btn'); // Знаходимо кнопку за класом
 
 export const openModal = () => {
   modalElem.classList.remove('hidden');
@@ -8,3 +8,5 @@ export const openModal = () => {
 export const closeModal = () => {
   modalElem.classList.add('hidden');
 };
+
+closeBtnElem.addEventListener('click', closeModal);

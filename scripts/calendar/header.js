@@ -8,18 +8,21 @@ export const renderHeader = () => {
   const displayedWeekStart = getItem('displayedWeekStart');
   const weekDates = generateWeekRange(displayedWeekStart);
 
-  const headerMarkup = weekDates.map(date => {
+  const daysMarkup = weekDates.map(date => {
     const dayName = daysOfWeek[date.getDay()];
     const dayNumber = date.getDate();
     const isToday = new Date().toDateString() === date.toDateString();
     
     return `
       <div class="calendar__header-day" data-day="${dayNumber}">
-        <span class="day-label">${dayName}</span>
+        <span class="day-name">${dayName}</span>
         <span class="day-number ${isToday ? 'day-number_today' : ''}">${dayNumber}</span>
       </div>
     `;
   }).join('');
 
-  headerContainer.innerHTML = headerMarkup;
+  headerContainer.innerHTML = `
+    <div class="calendar__gmt-label">GMT+03</div>
+    ${daysMarkup}
+  `;
 };
