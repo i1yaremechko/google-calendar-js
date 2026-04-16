@@ -1,7 +1,7 @@
 import { closePopup } from '../common/popup.js';
 import { getItem } from '../common/storage.js';
 import { deleteEvent } from '../server/eventsGateway.js';
-import { renderEvents } from './eventRenderer.js';
+import { fetchAndRenderEvents } from './eventRenderer.js';
 
 export async function onDeleteEvent() {
   const eventId = getItem('selectedEventId');
@@ -10,7 +10,7 @@ export async function onDeleteEvent() {
   try {
     await deleteEvent(eventId);
     closePopup();
-    renderEvents();
+    await fetchAndRenderEvents();
   } catch (err) {
     alert('Internal Server Error');
   }

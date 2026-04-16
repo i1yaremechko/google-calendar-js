@@ -2,7 +2,7 @@ import { closeModal } from '../common/modal.js';
 import { getItem } from '../common/storage.js';
 import { getDateTime } from '../common/time.utils.js';
 import { createEvent } from '../server/eventsGateway.js';
-import { renderEvents } from './eventRenderer.js';
+import { fetchAndRenderEvents } from './eventRenderer.js';
 
 const eventFormElem = document.querySelector('.event-form');
 
@@ -53,7 +53,7 @@ async function onCreateEvent(event) {
     await createEvent(newEvent);
     closeModal();
     eventFormElem.reset();
-    renderEvents();
+    await fetchAndRenderEvents();
   } catch (err) {
     alert('Internal Server Error');
   }

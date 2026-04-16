@@ -13,6 +13,6 @@ export const renderWeek = async () => {
     .map(date => generateDayMarkup(date))
     .join('');
 
-  await renderEvents();
+  renderEvents();
   renderCurrentTimeLine();
 };
