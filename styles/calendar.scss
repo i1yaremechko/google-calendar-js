@@ -6,7 +6,7 @@
 
   &__header {
     display: flex;
-    background-color: #fff;
+    background-color: #d4f0f5;
     position: sticky;
     top: 70px;
     z-index: 15;
@@ -22,9 +22,10 @@
     justify-content: center;
     padding-bottom: 8px;
     font-size: 12px;
-    color: #70757a;
+    color: #238da0;
     border-right: 1px solid #dadce0;
     box-sizing: border-box;
+    background-color: #f5dbd4;
   }
 
   &__header-day {
