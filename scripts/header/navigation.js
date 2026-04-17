@@ -18,13 +18,13 @@ const onChangeWeek = (event) => {
   const button = event.target.closest('button');
   if (!button) return;
 
-  const { direction } = button.dataset.direction;
+  const direction = button.dataset.direction;
   const displayedWeekStart = getItem(STORAGE_KEY_DISPLAYED_WEEK_START);
   
   setItem(STORAGE_KEY_DISPLAYED_WEEK_START,
     direction === 'today'
       ? getStartOfWeek(new Date())
-      : shmoment(displayedWeekStart) [direction === 'next' ? 'add' : 'substract']
+      : shmoment(displayedWeekStart) [direction === 'next' ? 'add' : 'subtract']
       ('days', 7).result()
   );
   renderCalendar();
