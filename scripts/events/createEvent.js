@@ -1,12 +1,12 @@
 import { closeModal } from '../common/modal.js';
-import { getItem } from '../common/storage.js';
+import { getItem, STORAGE_KEY_EVENTS } from '../common/storage.js';
 import { getDateTime } from '../common/time.utils.js';
 import { createEvent } from '../server/eventsGateway.js';
 import { fetchAndRenderEvents } from './eventRenderer.js';
 
 const eventFormElem = document.querySelector('.event-form');
 
-async function onCreateEvent(event) {
+const onCreateEvent = async (event) => {
   event.preventDefault();
   const formData = new FormData(eventFormElem);
 
@@ -29,7 +29,7 @@ async function onCreateEvent(event) {
     return;
   }
 
-  const currentEvents = getItem('events') || []; 
+  const currentEvents = getItem(STORAGE_KEY_EVENTS) || []; 
   const isOverlapping = currentEvents.some(e => {
     const eStart = new Date(e.start);
     const eEnd = new Date(e.end);
@@ -59,6 +59,6 @@ async function onCreateEvent(event) {
   }
 }
 
-export function initEventForm() {
+export const initEventForm = () => {
   eventFormElem.addEventListener('submit', onCreateEvent);
 }

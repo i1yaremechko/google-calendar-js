@@ -1,25 +1,27 @@
+@import 'variables';
+
 .calendar__time-scale {
   width: 70px;
   flex-shrink: 0;
-  border-right: 1px solid #dadce0;
+  border-right: 1px solid $color-border;
   box-sizing: border-box;
-  background-color: #f1eecf;
+  background-color: $color-bg-hover;
 }
 
 .time-slot {
-  height: 60px;
   position: relative;
-  box-sizing: border-box;
+  height: 60px;
   padding-left: 12px;
+  box-sizing: border-box;
 
   &__time {
     position: absolute;
     top: -8px;
-    left: 12px;
     right: auto;
-    font-size: 12px;
-    color: #70757a;
+    left: 12px;
     padding: 0 4px;
+    font-size: 12px;
+    color: $color-text-secondary;
     text-align: left;
   }
 }

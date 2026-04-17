@@ -8,19 +8,26 @@
 
 .button {
   height: 40px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-  cursor: pointer;
+  padding: 0 16px;
   font-size: 16px;
   font-weight: 500;
+  color: #3c4043;
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s;
+}
+.button:hover {
+  background-color: #f1f3f4;
 }
 
 .icon-button {
-  outline: none;
-  border: none;
-  cursor: pointer;
   background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .popup {
@@ -28,14 +35,14 @@
   z-index: 40;
 }
 .popup__content {
-  background-color: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-width: 150px;
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 .popup__color-picker {
   display: flex;
@@ -46,37 +53,38 @@
 }
 
 .delete-event-btn {
-  background-color: #d93025;
-  color: white;
-  border: none;
   padding: 8px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #ea4335;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
+  transition: background-color 0.2s;
 }
 .delete-event-btn:hover {
-  background-color: #b22a22;
+  background-color: #1765cc;
 }
 
 .modal {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
   pointer-events: none;
 }
 .modal__content {
   position: relative;
-  background: #fff;
+  z-index: 1001;
   padding: 24px;
+  background: #fff;
   border-radius: 8px;
   box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14);
-  z-index: 1001;
   pointer-events: auto;
 }
 
@@ -84,50 +92,51 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(60, 64, 67, 0.3);
+  z-index: 49;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 49;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(60, 64, 67, 0.3);
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  z-index: 20;
   display: flex;
   align-items: center;
-  padding: 12px 20px;
-  border-bottom: 1px solid #dadce0;
+  width: 100%;
   height: 70px;
+  padding: 12px 20px;
   background-color: #fff;
-  z-index: 20;
+  border-bottom: 1px solid #dadce0;
 }
 
 .create-event-btn {
-  margin-right: 30px;
-  height: 48px;
-  padding: 0 20px;
-  background-color: #e8f2f7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border: none;
-  border-radius: 24px;
-  color: #3c4043;
   display: flex;
   align-items: center;
+  height: 48px;
+  padding: 0 20px;
+  margin-right: 30px;
   font-weight: 500;
+  color: #3c4043;
+  background-color: #e8f2f7;
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
   cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 .create-event-btn:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #def0fa;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 .create-event-btn__icon {
   margin-right: 12px;
@@ -142,28 +151,32 @@
   align-items: center;
 }
 .navigation__today-btn {
-  margin-right: 20px;
-  border: 1px solid #dadce0;
-  background: #fff;
-  color: #ffffff;
-  padding: 0 16px;
   height: 36px;
-  border-radius: 4px;
+  padding: 0 16px;
+  margin-right: 20px;
+  font-weight: 500;
+  color: #fff;
   background-color: #1a73e8;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 .navigation__today-btn:hover {
-  background-color: #f1f3f4;
   color: #1a73e8;
+  background-color: #f1f3f4;
 }
 .navigation__nav-icon {
-  font-size: 14px;
-  color: #5f6368;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: #70757a;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 .navigation__nav-icon:hover {
   background-color: #f1f3f4;
@@ -182,25 +195,25 @@
 }
 .calendar__header {
   display: flex;
-  background-color: #d4f0f5;
   position: sticky;
   top: 70px;
   z-index: 15;
+  background-color: #d4f0f5;
   border-bottom: 1px solid #dadce0;
   box-sizing: border-box;
 }
 .calendar__gmt-label {
-  width: 70px;
-  flex-shrink: 0;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  width: 70px;
+  flex-shrink: 0;
   padding-bottom: 8px;
   font-size: 12px;
-  color: #238da0;
+  color: #70757a;
+  background-color: #e8f2f7;
   border-right: 1px solid #dadce0;
   box-sizing: border-box;
-  background-color: #f5dbd4;
 }
 .calendar__header-day {
   flex: 1;
@@ -215,25 +228,25 @@
   border-right: none;
 }
 .calendar__header-day .day-name {
-  color: #70757a;
   font-size: 11px;
   font-weight: 500;
+  color: #70757a;
   text-transform: uppercase;
 }
 .calendar__header-day .day-number {
-  font-size: 24px;
-  margin-top: 6px;
-  width: 40px;
-  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: 6px;
+  font-size: 24px;
   color: #3c4043;
+  border-radius: 50%;
 }
 .calendar__header-day .day-number_today {
-  background-color: #1a73e8;
   color: #fff !important;
+  background-color: #1a73e8;
 }
 .calendar__body {
   display: flex;
@@ -248,13 +261,13 @@
   flex: 1;
 }
 .calendar__day {
-  flex: 1;
-  border-right: 1px solid #dadce0;
   position: relative;
+  flex: 1;
   min-height: 1440px;
-  box-sizing: border-box;
-  background-size: 100% 60px;
   background-image: linear-gradient(to bottom, #f1f3f4 1px, transparent 1px);
+  background-size: 100% 60px;
+  border-right: 1px solid #dadce0;
+  box-sizing: border-box;
 }
 .calendar__day:last-child {
   border-right: none;
@@ -263,17 +276,17 @@
 .current-time-line {
   position: absolute;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 2px;
   background-color: #ea4335;
-  z-index: 10;
   pointer-events: none;
 }
 .current-time-line::before {
   content: "";
   position: absolute;
-  left: -6px;
   top: -5px;
+  left: -6px;
   width: 10px;
   height: 10px;
   background-color: #ea4335;
@@ -285,23 +298,23 @@
   flex-shrink: 0;
   border-right: 1px solid #dadce0;
   box-sizing: border-box;
-  background-color: #f1eecf;
+  background-color: #f1f3f4;
 }
 
 .time-slot {
-  height: 60px;
   position: relative;
-  box-sizing: border-box;
+  height: 60px;
   padding-left: 12px;
+  box-sizing: border-box;
 }
 .time-slot__time {
   position: absolute;
   top: -8px;
-  left: 12px;
   right: auto;
+  left: 12px;
+  padding: 0 4px;
   font-size: 12px;
   color: #70757a;
-  padding: 0 4px;
   text-align: left;
 }
 
@@ -313,12 +326,12 @@
   position: absolute;
   top: -5px;
   right: 0;
+  z-index: 10;
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
   transform: rotate(45deg);
-  z-index: 10;
 }
 .create-event__close-btn:hover {
   color: #000;
@@ -327,40 +340,40 @@
 .event-form {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   gap: 15px;
+  margin-top: 20px;
 }
 .event-form__label {
   font-size: 14px;
-  color: #47477a;
+  color: #70757a;
 }
 .event-form__color-input {
   display: block;
   width: 50px;
-  cursor: pointer;
-  border: none;
   background: transparent;
+  border: none;
+  cursor: pointer;
 }
 .event-form__field {
   width: 100%;
   padding: 10px;
+  font-size: 16px;
   border: none;
   border-bottom: 2px solid #eee;
   outline: none;
-  font-size: 16px;
 }
 .event-form__field:focus {
   border-bottom-color: #1a73e8;
 }
 .event-form__field[name=description] {
-  resize: none;
   min-height: 80px;
   font-family: inherit;
+  resize: none;
 }
 .event-form__field::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  border-radius: 50%;
   padding: 2px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .event-form__field::-webkit-calendar-picker-indicator:hover {
   background-color: #f1f3f4;
@@ -378,12 +391,12 @@
   align-self: flex-end;
   margin-top: 10px;
   padding: 10px 24px;
+  font-weight: 500;
+  color: #fff;
   background-color: #1a73e8;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
 }
 .event-form__submit-btn:hover {
   background-color: #1765cc;
@@ -392,34 +405,34 @@
 
 .event {
   position: absolute;
-  width: calc(100% - 8px);
+  z-index: 5;
   left: 4px;
-  background-color: #71a1e0;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: #fff;
   display: flex;
   flex-direction: column;
+  width: calc(100% - 8px);
+  padding: 4px 8px;
   overflow: hidden;
+  font-size: 12px;
+  color: #fff;
   cursor: pointer;
-  z-index: 5;
+  background-color: #1a73e8;
+  border-radius: 4px;
   transition: box-shadow 0.2s;
 }
 .event:hover {
-  filter: brightness(0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 10;
+  filter: brightness(0.95);
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
 }
 .event__title {
   font-weight: 500;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .event__time {
-  font-size: 11px;
   margin-top: 2px;
+  font-size: 11px;
 }
 
 * {

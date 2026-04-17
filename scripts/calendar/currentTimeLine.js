@@ -1,4 +1,4 @@
-import { getItem } from '../common/storage.js';
+import { getItem, STORAGE_KEY_DISPLAYED_WEEK_START } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 
 export const renderCurrentTimeLine = () => {
@@ -6,7 +6,7 @@ export const renderCurrentTimeLine = () => {
   if (oldLine) oldLine.remove();
 
   const currentDate = new Date();
-  const displayedWeekStart = getItem('displayedWeekStart');
+  const displayedWeekStart = getItem(STORAGE_KEY_DISPLAYED_WEEK_START);
   
   const weekDates = generateWeekRange(displayedWeekStart);
 

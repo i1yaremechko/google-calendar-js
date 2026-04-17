@@ -1,3 +1,5 @@
+@import 'variables';
+
 .calendar {
   display: flex;
   flex-direction: column;
@@ -6,26 +8,26 @@
 
   &__header {
     display: flex;
-    background-color: #d4f0f5;
     position: sticky;
     top: 70px;
     z-index: 15;
-    border-bottom: 1px solid #dadce0;
+    background-color: $color-header-bg;
+    border-bottom: 1px solid $color-border;
     box-sizing: border-box;
   }
 
   &__gmt-label {
-    width: 70px;
-    flex-shrink: 0;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    width: 70px;
+    flex-shrink: 0;
     padding-bottom: 8px;
     font-size: 12px;
-    color: #238da0;
-    border-right: 1px solid #dadce0;
+    color: $color-text-secondary;
+    background-color: $color-btn-create-bg;
+    border-right: 1px solid $color-border;
     box-sizing: border-box;
-    background-color: #f5dbd4;
   }
 
   &__header-day {
@@ -34,7 +36,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 0;
-    border-right: 1px solid #dadce0;
+    border-right: 1px solid $color-border;
     box-sizing: border-box;
 
     &:last-child {
@@ -42,26 +44,26 @@
     }
 
     .day-name {
-      color: #70757a;
       font-size: 11px;
       font-weight: 500;
+      color: $color-text-secondary;
       text-transform: uppercase;
     }
 
     .day-number {
-      font-size: 24px;
-      margin-top: 6px;
-      width: 40px;
-      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-top: 6px;
+      font-size: 24px;
+      color: $color-text-main;
       border-radius: 50%;
-      color: #3c4043;
 
       &_today {
-        background-color: #1a73e8;
-        color: #fff !important;
+        color: $color-white !important;
+        background-color: $color-primary;
       }
     }
   }
@@ -82,13 +84,13 @@
   }
 
   &__day {
-    flex: 1;
-    border-right: 1px solid #dadce0;
     position: relative;
+    flex: 1;
     min-height: 1440px;
-    box-sizing: border-box;
+    background-image: linear-gradient(to bottom, $color-bg-hover 1px, transparent 1px);
     background-size: 100% 60px;
-    background-image: linear-gradient(to bottom, #f1f3f4 1px, transparent 1px);
+    border-right: 1px solid $color-border;
+    box-sizing: border-box;
 
     &:last-child {
       border-right: none;
@@ -99,20 +101,20 @@
 .current-time-line {
   position: absolute;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 2px;
-  background-color: #ea4335;
-  z-index: 10;
+  background-color: $color-red;
   pointer-events: none;
 
   &::before {
     content: '';
     position: absolute;
-    left: -6px;
     top: -5px;
+    left: -6px;
     width: 10px;
     height: 10px;
-    background-color: #ea4335;
+    background-color: $color-red;
     border-radius: 50%;
   }
 }

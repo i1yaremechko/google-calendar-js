@@ -1,3 +1,5 @@
+@import 'variables';
+
 .create-event {
   position: relative;
   width: 400px;
@@ -6,15 +8,15 @@
     position: absolute;
     top: -5px;
     right: 0;
+    z-index: 10;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
     transform: rotate(45deg);
-    z-index: 10;
 
     &:hover {
-      color: #000;
+      color: $color-black;
     }
   }
 }
@@ -22,47 +24,47 @@
 .event-form {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   gap: 15px;
+  margin-top: 20px;
 
   &__label {
     font-size: 14px;
-    color: #47477a;
+    color: $color-text-secondary;
   }
 
   &__color-input {
     display: block;
     width: 50px;
-    cursor: pointer;
-    border: none;
     background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   &__field {
     width: 100%;
     padding: 10px;
-    border: none;
-    border-bottom: 2px solid #eee;
-    outline: none;
     font-size: 16px;
+    border: none;
+    border-bottom: 2px solid $color-border-light;
+    outline: none;
 
     &:focus {
-      border-bottom-color: #1a73e8;
+      border-bottom-color: $color-primary;
     }
 
     &[name="description"] {
-      resize: none;
       min-height: 80px;
       font-family: inherit;
+      resize: none;
     }
 
     &::-webkit-calendar-picker-indicator {
-      cursor: pointer;
-      border-radius: 50%;
       padding: 2px;
+      border-radius: 50%;
+      cursor: pointer;
 
       &:hover {
-        background-color: #f1f3f4;
+        background-color: $color-bg-hover;
       }
     }
   }
@@ -82,16 +84,16 @@
     align-self: flex-end;
     margin-top: 10px;
     padding: 10px 24px;
-    background-color: #1a73e8;
-    color: white;
+    font-weight: 500;
+    color: $color-white;
+    background-color: $color-primary;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: 500;
 
     &:hover {
-      background-color: #1765cc;
-      box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
+      background-color: $color-primary-hover;
+      box-shadow: $shadow-small;
     }
   }
 }

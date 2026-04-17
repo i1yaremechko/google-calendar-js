@@ -1,4 +1,4 @@
-import { getItem, setItem } from '../common/storage.js';
+import { getItem, setItem, STORAGE_KEY_DISPLAYED_WEEK_START, STORAGE_KEY_EVENTS } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { getEventsList } from '../server/eventsGateway.js';
 import { createEventElement } from './eventElement.js';
@@ -6,8 +6,8 @@ import { createEventElement } from './eventElement.js';
 export const renderEvents = async () => {  
   document.querySelectorAll('.event').forEach(elem => elem.remove());
 
-  const events = getItem('events') || [];
-  const displayedWeekStart = getItem('displayedWeekStart');
+  const events = getItem(STORAGE_KEY_EVENTS) || [];
+  const displayedWeekStart = getItem(STORAGE_KEY_DISPLAYED_WEEK_START);
   const weekDates = generateWeekRange(displayedWeekStart);
   const weekDatesStrings = weekDates.map(date => date.toDateString());
   
@@ -28,7 +28,7 @@ export const renderEvents = async () => {
 export const fetchAndRenderEvents = async () => {
   try {
     const events = await getEventsList();
-    setItem('events', events);
+    setItem(STORAGE_KEY_EVENTS, events);
     renderEvents();
   } catch (error) {
     alert('Internal Server Error');

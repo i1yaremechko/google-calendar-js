@@ -1,10 +1,10 @@
 import { closePopup } from '../common/popup.js';
-import { getItem } from '../common/storage.js';
+import { getItem, STORAGE_KEY_SELECTED_EVENT_ID } from '../common/storage.js';
 import { deleteEvent } from '../server/eventsGateway.js';
 import { fetchAndRenderEvents } from './eventRenderer.js';
 
-export async function onDeleteEvent() {
-  const eventId = getItem('selectedEventId');
+export const onDeleteEvent = async () => {
+  const eventId = getItem(STORAGE_KEY_SELECTED_EVENT_ID);
   if (!eventId) return;
 
   try {

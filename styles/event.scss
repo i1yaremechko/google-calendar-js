@@ -1,34 +1,36 @@
+@import 'variables';
+
 .event {
   position: absolute;
-  width: calc(100% - 8px);
+  z-index: 5;
   left: 4px;
-  background-color: #71a1e0;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: #fff;
   display: flex;
   flex-direction: column;
+  width: calc(100% - 8px);
+  padding: 4px 8px;
   overflow: hidden;
+  font-size: 12px;
+  color: $color-white;
   cursor: pointer;
-  z-index: 5;
+  background-color: $color-primary;
+  border-radius: 4px;
   transition: box-shadow 0.2s;
 
   &:hover {
-    filter: brightness(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 10;
+    filter: brightness(0.95);
+    box-shadow: $shadow-small;
   }
 
   &__title {
     font-weight: 500;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   &__time {
-    font-size: 11px;
     margin-top: 2px;
+    font-size: 11px;
   }
 }

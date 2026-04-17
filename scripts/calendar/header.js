@@ -1,11 +1,11 @@
-import { getItem } from '../common/storage.js';
+import { getItem, STORAGE_KEY_DISPLAYED_WEEK_START } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 export const renderHeader = () => {
   const headerContainer = document.querySelector('.calendar__header');
-  const displayedWeekStart = getItem('displayedWeekStart');
+  const displayedWeekStart = getItem(STORAGE_KEY_DISPLAYED_WEEK_START);
   const weekDates = generateWeekRange(displayedWeekStart);
 
   const daysMarkup = weekDates.map(date => {

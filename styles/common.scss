@@ -1,18 +1,28 @@
+@import 'variables';
+
 .button {
   height: 40px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-  cursor: pointer;
+  padding: 0 16px;
   font-size: 16px;
   font-weight: 500;
+  color: $color-text-main;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-bg-hover;
+  }
 }
 
 .icon-button {
-  outline: none;
-  border: none;
-  cursor: pointer;
   background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .popup {
@@ -20,16 +30,14 @@
   z-index: 40;
 
   &__content {
-    background-color: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-      0 3px 14px 2px rgba(0, 0, 0, 0.12),
-      0 5px 5px -3px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 10px;
     min-width: 150px;
+    padding: 12px;
+    background-color: $color-white;
+    border-radius: 8px;
+    box-shadow: $shadow-popup;
   }
 
   &__color-picker {
@@ -37,21 +45,22 @@
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
-    color: #3c4043;
+    color: $color-text-main;
   }
 }
 
 .delete-event-btn {
-  background-color: #d93025;
-  color: white;
-  border: none;
   padding: 8px;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-red;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: #b22a22;
+    background-color: $color-primary-hover;
   }
 }
 
@@ -59,21 +68,21 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
   pointer-events: none;
 
   &__content {
     position: relative;
-    background: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14);
     z-index: 1001;
+    padding: 24px;
+    background: $color-white;
+    border-radius: 8px;
+    box-shadow: $shadow-modal;
     pointer-events: auto;
   }
 }
@@ -82,15 +91,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(60, 64, 67, 0.3);
+  z-index: 49;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 49;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-overlay;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
