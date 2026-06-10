@@ -1,24 +1,26 @@
 # Google Calendar Clone (Vanilla JS)
 
-Навчальний проєкт з розробки календаря з використанням чистого JavaScript та SCSS.
+A web application that clones the core functionality of Google Calendar. Built as a learning project to master modular architecture with pure JavaScript and integrated data synchronization via a REST API.
 
-## Live Demo
-[Переглянути проект](https://i1yaremechko.github.io/google-calendar-js/)
+## 🔗 Live Demo
+[View the Live Project](https://i1yaremechko.github.io/google-calendar-js/)
 
-## Технології
-- Vanilla JavaScript (ES6+ Modules)
-- SCSS (Sass)
-- Prettier / ESLint (Airbnb Style Guide)
-- MockAPI (для збереження подій)
+## 🛠️ Technologies & Tools
+- **Vanilla JavaScript** (ES6+ Modules)
+- **SCSS** (Sass) with modular structure
+- **Prettier / ESLint** (Configured with Airbnb Style Guide)
+- **MockAPI** (REST API for full CRUD event synchronization)
 
-## Функціонал
-- Відображення календаря на тиждень.
-- Створення, редагування та видалення подій.
-- Валідація часу (заборона видалення за 15 хв до початку).
-- Синхронізація з сервером.
+## 💡 Features
+- **Weekly Calendar Grid:** Dynamic rendering of days, hours, and navigation between weeks.
+- **Event Management:** Full CRUD operations (Create, Read, Update, Delete) synchronized with a remote server.
+- **Smart Form Validation:** Includes restrictions on event creation and sets specific rules for event duration and overlap.
+- **Time Lock for Deletion:** Implements a validation rule that prevents users from deleting an event if there are less than 15 minutes left before it starts.
+- **Server Synchronization:** Ensures all data is securely stored and persistently fetched from the backend.
 
-## Як запустити локально
-1. Клонуйте репозиторій: `git clone https://github.com/i1yaremechko/google-calendar-js.git`
-2. Встановіть залежності: `npm install`
-3. Запустіть компіляцію стилів: `npm run scss`
-4. Відкрийте через `live-server` або розширення Live Server у VS Code.
+## 🚀 How to Run Locally
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/i1yaremechko/google-calendar-js.git](https://github.com/i1yaremechko/google-calendar-js.git)
+   cd google-calendar-js

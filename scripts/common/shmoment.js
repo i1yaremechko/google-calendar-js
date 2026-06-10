@@ -23,10 +23,11 @@ const shmoment = (date) => {
 
   const calculator = {
     add(units, value) {
-      const currentUnitValue = result[getMethodsNames[units]]();
-      result = new Date(
-        result[setMethodsNames[units]](currentUnitValue + value)
-      );
+      const getMethod = getMethodsNames[units];
+      const setMethod = setMethodsNames[units];
+      const currentUnitValue = result[getMethod]();
+      result[setMethod](currentUnitValue + value);
+      result = new Date(result);
       return this;
     },
     subtract(units, value) {
