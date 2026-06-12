@@ -24,3 +24,19 @@ A web application that clones the core functionality of Google Calendar. Built a
    ```bash
    git clone [https://github.com/i1yaremechko/google-calendar-js.git](https://github.com/i1yaremechko/google-calendar-js.git)
    cd google-calendar-js
+   ```
+
+2. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Compile SCSS styles:**
+   ```bash
+   npm run scss
+   ```
+
+4. **Launch the application:**
+   ```bash
+   Open index.html using the Live Server extension in VS Code or any local static server.
+   ```
